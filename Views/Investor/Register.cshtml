@@ -1,0 +1,132 @@
+﻿@using Edstart.Services
+@model Edstart.DTO.InvestorRegister
+@{
+    ViewBag.Title = "Investor Register";
+    Layout = "~/Views/Shared/_Homelayout.cshtml";
+    
+    RazorService service = new RazorService();
+    List<SelectListItem> list_licencestate = service.GetLicenceState_SelectListItem();
+}
+
+<h2>Investor Register</h2>
+
+@using (Html.BeginForm("Register", "Investor", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+        <tr>
+            <td>Email</td>
+            <td>@Html.TextBoxFor(x => x.investor.Account.Email)</td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>@Html.TextBoxFor(x => x.investor.Account.Password)</td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td>@Html.EnumTypeDropDownListFor(x => x.investor.Title)</td>
+        </tr>
+        <tr>
+            <td>First name</td>
+            <td>@Html.TextBoxFor(x => x.investor.FirstName)</td>
+        </tr>
+        <tr>
+            <td>Last name</td>
+            <td>@Html.TextBoxFor(x => x.investor.LastName)</td>
+        </tr>
+        <tr>
+            <td>Home phone</td>
+            <td>@Html.TextBoxFor(x => x.investor.HomePhone)</td>
+        </tr>
+        <tr>
+            <td>Mobile phone</td>
+            <td>@Html.TextBoxFor(x => x.investor.MobilePhone)</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>@Html.TextBoxFor(x => x.investor.Address)</td>
+        </tr>     
+        <tr>
+            <td>Date of birth</td>
+            <td>@Html.TextBoxFor(x => x.investor.DateOfBirth)</td>
+        </tr>
+        <tr>
+            <td>Licence number</td>
+            <td>@Html.TextBoxFor(x => x.investor.LicenceNumber)</td>
+        </tr>
+        <tr>
+            <td>Licence state</td>
+            <td>@Html.DropDownListFor(x => x.investor.LicenceStateId,list_licencestate)</td>
+        </tr>
+        <tr>
+            <td>Passport number</td>
+            <td>@Html.TextBoxFor(x => x.investor.PassportNumber)</td>
+        </tr>
+        <tr>
+            <td>Applying as</td>
+            <td>@Html.EnumTypeDropDownListFor(x => x.investor.ApplyingAs)</td>
+        </tr>
+        <tr>
+            <td>Tax file number</td>
+            <td>@Html.TextBoxFor(x => x.investor.TaxFileNumber)</td>
+        </tr>
+        <tr>
+            <td>BSB number</td>
+            <td>@Html.TextBoxFor(x => x.investor.BSBNumber)</td>
+        </tr>
+        <tr>
+            <td>Account number</td>
+            <td>@Html.TextBoxFor(x => x.investor.AccountNumber)</td>
+        </tr>
+        <tr>
+            <td>Account name</td>
+            <td>@Html.TextBoxFor(x => x.investor.AccountName)</td>
+        </tr>
+        <tr>
+            <td>Company name</td>
+            <td>@Html.TextBoxFor(x => x.investor.CompanyName)</td>
+        </tr>
+        <tr>
+            <td>ACN</td>
+            <td>@Html.TextBoxFor(x => x.investor.ACN)</td>
+        </tr>
+        <tr>
+            <td>Trust name</td>
+            <td>@Html.TextBoxFor(x => x.investor.TrustName)</td>
+        </tr>
+        <tr>
+            <td>Trust ABN</td>
+            <td>@Html.TextBoxFor(x => x.investor.TrustABN)</td>
+        </tr>
+        <tr>
+            <td>Trust 1</td>
+            <td>@Html.TextBoxFor(x => x.investor.Trustee.Trustee1)</td>
+        </tr>
+        <tr>
+            <td>Trust 2</td>
+            <td>@Html.TextBoxFor(x => x.investor.Trustee.Trustee2)</td>
+        </tr>
+        <tr>
+            <td>Trust 3</td>
+            <td>@Html.TextBoxFor(x => x.investor.Trustee.Trustee3)</td>
+        </tr>
+        <tr>
+            <td>Superannuation fund name</td>
+            <td>@Html.TextBoxFor(x => x.investor.SuperannuationFundName)</td>
+        </tr>
+        <tr>
+            <td>Superannuation fund ABN</td>
+            <td>@Html.TextBoxFor(x => x.investor.SuperannuationFundABN)</td>
+        </tr>
+        <tr>
+            <td>Certificate</td>
+            <td><input name="file" type="file" /></td>
+        </tr>
+    </table>
+    <button type="submit">Submit</button>
+}
+@using (Html.BeginForm("Register", "Investor", FormMethod.Post))
+{
+    <input type="hidden" name="sample" value="true" />
+    <button type="submit">Dummy Data</button>
+}
+

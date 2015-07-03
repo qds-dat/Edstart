@@ -1,0 +1,122 @@
+﻿@model Edstart.Models.Investor
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index Investor</h2>
+<table>
+    <tr>
+        <td>Title</td>
+        <td>@Model.Title</td>
+    </tr>
+    <tr>
+        <td>First name</td>
+        <td>@Model.FirstName</td>
+    </tr>
+    <tr>
+        <td>Last name</td>
+        <td>@Model.LastName</td>
+    </tr>
+    <tr>
+        <td>Home phone</td>
+        <td>@Model.HomePhone</td>
+    </tr>
+    <tr>
+        <td>Mobile phone</td>
+        <td>@Model.MobilePhone</td>
+    </tr>
+    <tr>
+        <td>Address</td>
+        <td>@Model.Address</td>
+    </tr>
+    <tr>
+        <td>Date of birth</td>
+        <td>@Model.DateOfBirth</td>
+    </tr>
+    <tr>
+        <td>Licence number</td>
+        <td>@Model.LicenceNumber</td>
+    </tr>
+    <tr>
+        <td>Licence state</td>
+        <td>@Model.LicenceState.LicenceStateCode</td>
+    </tr>
+    <tr>
+        <td>Passport number</td>
+        <td>@Model.PassportNumber</td>
+    </tr>
+    <tr>
+        <td>Applying as</td>
+        <td>@Model.ApplyingAs</td>
+    </tr>
+    <tr>
+        <td>Tax file number</td>
+        <td>@Model.TaxFileNumber</td>
+    </tr>
+    <tr>
+        <td>BSB number</td>
+        <td>@Model.BSBNumber</td>
+    </tr>
+    <tr>
+        <td>Account number</td>
+        <td>@Model.AccountNumber</td>
+    </tr>
+    <tr>
+        <td>Account name</td>
+        <td>@Model.AccountName</td>
+    </tr>
+    <tr>
+        <td>Company name</td>
+        <td>@Model.CompanyName</td>
+    </tr>
+    <tr>
+        <td>ACN</td>
+        <td>@Model.ACN</td>
+    </tr>
+    <tr>
+        <td>Trust name</td>
+        <td>@Model.TrustName</td>
+    </tr>
+    <tr>
+        <td>Trust ABN</td>
+        <td>@Model.TrustABN</td>
+    </tr>
+    <tr>
+        <td>Trust 1</td>
+        <td>@Model.Trustee.Trustee1</td>
+    </tr>
+    <tr>
+        <td>Trust 2</td>
+        <td>@Model.Trustee.Trustee2</td>
+    </tr>
+    <tr>
+        <td>Trust 3</td>
+        <td>@Model.Trustee.Trustee3</td>
+    </tr>
+    <tr>
+        <td>Superannuation fund name</td>
+        <td>@Model.SuperannuationFundName</td>
+    </tr>
+    <tr>
+        <td>Superannuation fund ABN</td>
+        <td>@Model.SuperannuationFundABN</td>
+    </tr>
+    <tr>
+    <tr>
+        <td>Certificate File</td>
+        <td>
+            @if (!String.IsNullOrEmpty(Model.Certificate))
+            {
+                <a href="@Model.Certificate" target="_blank">File</a>
+            }
+            else
+            {
+                <text>Empty</text>
+            }
+
+        </td>
+    </tr>
+
+</table>
+
+

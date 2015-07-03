@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "AfterLogin";
+}
+
+<p>Please check your email for approve account</p>
+<a class="RedirectHomePage">you are redirecting to your home page in <span id="RedirectCountDown"></span></a>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var count = 6;
+            var url = "@Url.Action("Index", "Home")";
+
+            var countDown = setInterval(function () {
+                if (count < 0) {
+                    $('a.RedirectHomePage').attr("href", url)
+                        .text("Redirecting to home page")
+                                       
+                    setTimeout(function () {
+                        window.location.href = url;
+                    }, 2000);
+
+                    clearInterval(countDown);
+
+                } else {
+                    $('span#RedirectCountDown').text(count);
+                    count--;
+                }
+
+            }, 1000);
+
+            $('span#RedirectCountDown').text(count);
+        });
+    </script>
+}
+

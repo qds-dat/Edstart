@@ -1,0 +1,61 @@
+﻿@model Edstart.Services.EdStartEmail
+@{
+    Layout = "~/Views/Shared/_DemoLayout.cshtml";
+}
+
+<header id="masthead" class="site-header block" role="banner">
+    <div class="site-branding">
+        <a href="" title="Edstart" rel="home">
+            <img class="site-title" src="/Content/asset/EdstartC30b-A01aT03a-Z.png" alt="Edstart">
+        </a>
+    </div>
+</header><!-- #masthead -->
+
+<div id="content" class="site-content">
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+            <section id="contact" class="">
+                <div class="invite">
+                    <h2 class="site-description">
+                        <p>Please enter your email address to register your interest : </p>
+                    </h2>
+                    <!-- Begin MailChimp Signup Form -->
+                    @{
+                        string responseId = "";
+                        if (!String.IsNullOrEmpty(ViewBag.message) && ViewBag.message != "Thank you !")
+                        {
+                            responseId = "mce-error-response";
+                        }
+                    }
+                    <div id="mc_embed_signup">
+                        <form action="/Home/Index" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+                            <div id="mc_embed_signup_scroll">
+                                <div class="mc-field-group">
+                                    <div class="input-wrap">
+                                        @Html.TextBoxFor(model => model.Message, new { @class = "required email", id = "mce-EMAIL", type = "email", placeholder = "Your email address" })
+                                        <div class="response" id="@responseId">@ViewBag.message</div>
+                                    </div>
+                                    <div id="mce-responses">
+
+                                    </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                </div>
+
+
+                                <div class="button">
+                                    <div class="clear"><i class="fa fa-envelope"></i><input type="submit" value="GET AN INVITE" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--End mc_embed_signup-->
+                </div>
+                <div class="info">
+                    <h2 class="section-title">Contact</h2>
+                    <div class="lead">
+                        <p>info@edstart.com.au</p>
+                    </div>
+                </div>
+            </section>
+        </main><!-- #main -->
+    </div><!-- #primary -->
+</div><!-- #content -->

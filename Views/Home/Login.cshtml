@@ -1,0 +1,22 @@
+﻿@model Edstart.Models.Account
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Homelayout.cshtml";
+}
+
+<h2>Register</h2>
+
+<form method="post" action="/Home/Login">
+    <table>
+        <tr>
+            <td>Email : </td>
+            <td>@Html.TextBoxFor(x => x.Email)</td>
+        </tr>
+        <tr>
+            <td>Password : </td>
+            <td>@Html.TextBoxFor(x => x.Password)</td>
+        </tr>
+    </table>
+    <button type="submit">Submit</button>
+</form>
+

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Edstart.DTO.LoanAuction>
+@{
+
+}
+
+<table border="1">
+    <tr>
+        <th>Parent Name</th>
+        <th>StudentName</th>
+        <th>School Information</th>
+        <th>Loan Amount</th>
+        <th>Day Left</th>
+        <th>Amount Left</th>
+        <th>% Funded</th> 
+        <th>Bid Amount</th>
+        <th>Bid Action</th>
+    </tr>
+    @foreach (var loan in Model)
+    {
+        <tr class="loandata" data-parentid="@loan.ParentId" >
+            <td><a href="@loan.ParentCertificate">@loan.BorrowerFullName</a></td>
+            <td>@loan.StudentName</td>
+            <td><a href="@loan.SchoolCertificate">@loan.SchoolName</a></td>
+            <td>@loan.LoanWithRate.ToString("F")</td>
+            <td>@loan.DayLeft</td>
+            <td>$<span class="AmountLeft">@loan.AmountLeft</span></td>
+            <td><span class="PercentFunded">@loan.PercentFunded</span> %</td>
+            <td>@Html.TextBox("BidAmount", loan.BidAmount)</td>
+            <td>               
+                <button class="submit">Submit</button>             
+            </td>
+        </tr>
+    }
+</table>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+           
+            $("button.submit").click(function () {
+                var tr = $(this).closest('tr');
+                var data = {};
+                data.ParentId = tr.data("parentid");
+                data.BidAmount = tr.find('input[name="BidAmount"]').val();
+
+                $.ajax({
+                    url: "/Auction/BidUpsert",
+                    method: "POST",
+                    data: data
+                }).done(function (result) {
+                    if(result.status === true){
+                        var data = result.data;
+                        console.log(data);
+                        if(data == "null"){
+                            tr.remove();
+                        } else {
+                            tr.find("span.AmountLeft").text(data["AmountLeft"]);
+                            tr.find("span.PercentFunded").text(data["PercentFunded"]);
+                        }
+                    }
+                });
+
+            });
+
+        })
+    </script>
+
+}

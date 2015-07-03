@@ -1,0 +1,239 @@
+﻿@using Edstart.Services
+@model Edstart.DTO.ParentRegister
+@{
+    ViewBag.Title = "Parent Register";
+    Layout = "~/Views/Shared/_Homelayout.cshtml";
+    RazorService service = new RazorService();
+    List<SelectListItem> list_school = service.GetSchool_SelectListItem();
+    List<SelectListItem> list_term = service.GetTerm_SelectListItem();
+    List<SelectListItem> list_licencestate = service.GetLicenceState_SelectListItem();
+}
+
+<h2>Parent Register</h2>
+
+@using (Html.BeginForm("Register", "Parent", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+        <tr><th colspan="2" style="font-size:18px;padding:5px 0px">1) Borrower information</th></tr>
+        <tr>
+            <td>Email</td>
+            <td>@Html.TextBoxFor(x => x.parent.Account.Email)</td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>@Html.TextBoxFor(x => x.parent.Account.Password)</td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td>@Html.EnumTypeDropDownListFor(x => x.parent.Title)</td>
+        </tr>
+        <tr>
+            <td>First name</td>
+            <td>@Html.TextBoxFor(x => x.parent.FirstName)</td>
+        </tr>
+        <tr>
+            <td>Last name</td>
+            <td>@Html.TextBoxFor(x => x.parent.LastName)</td>
+        </tr>
+        <tr>
+            <td>Date of Birth</td>
+            <td>@Html.TextBoxFor(x => x.parent.DateOfBirth)</td>
+        </tr>
+        <tr>
+            <td>Licence Nnumber</td>
+            <td>@Html.TextBoxFor(x => x.parent.LicenceNumber)</td>
+        </tr>
+        <tr>
+            <td>Licence state</td>
+            <td>@Html.DropDownListFor(x => x.parent.LicenceStateId,list_licencestate)</td>
+        </tr>
+        <tr>
+            <td>Passport number</td>
+            <td>@Html.TextBoxFor(x => x.parent.PassportNumber)</td>
+        </tr>
+        <tr>
+            <td>Student first name</td>
+            <td>@Html.TextBoxFor(x => x.parent.StudentFirstName)</td>
+        </tr>
+        <tr>
+            <td>Stdent last name</td>
+            <td>@Html.TextBoxFor(x => x.parent.StudentLastName)</td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>@Html.EnumTypeDropDownListFor(x => x.parent.Gender)</td>
+        </tr>
+        <tr>
+            <td>Student's date of birth</td>
+            <td>@Html.TextBoxFor(x => x.parent.StudentDateOfBirth)</td>
+        </tr>
+        <tr>
+            <td>School Name</td>
+            <td>@Html.DropDownListFor(x => x.parent.SchoolId, list_school)</td>
+        </tr>
+        <tr>
+            <td>First year of enrolment in non-government school</td>
+            <td>@Html.TextBoxFor(x => x.parent.FirstYearInSchool)</td>
+        </tr>
+        <tr>
+            <td>Previous School</td>
+            <td>@Html.TextBoxFor(x => x.parent.PreviousSchool)</td>
+        </tr>
+        <tr>
+            <td>Loan term</td>
+            <td>@Html.DropDownListFor(x => x.parent.TermId,list_term)</td>
+        </tr>
+        <tr>
+            <td>Home phone</td>
+            <td>@Html.TextBoxFor(x => x.parent.HomePhone)</td>
+        </tr>
+        <tr>
+            <td>Mobile phone</td>
+            <td>@Html.TextBoxFor(x => x.parent.MobilePhone)</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>@Html.TextBoxFor(x => x.parent.Address)</td>
+        </tr>
+        <tr>
+            <td>Type of Residence</td>
+            <td>@Html.EnumTypeDropDownListFor(x => x.parent.Residence)</td>
+        </tr>
+        <tr>
+            <td>How long have you lived here (years)</td>
+            <td>@Html.TextBoxFor(x => x.parent.YearLive)</td>
+        </tr>
+        <tr>
+            <td>How long have you lived here (month)</td>
+            <td>@Html.TextBoxFor(x => x.parent.MonthLive)</td>
+        </tr>
+        <tr>
+            <td>Previous address</td>
+            <td>@Html.TextBoxFor(x => x.parent.PreviousAddress)</td>
+        </tr>
+        <tr>
+            <td>Next of kin name</td>
+            <td>@Html.TextBoxFor(x => x.parent.KinName)</td>
+        </tr>
+        <tr>
+            <td>Next of kin contact number</td>
+            <td>@Html.TextBoxFor(x => x.parent.KinContactNumber)</td>
+        </tr>
+        <tr>
+            <td>Relationship to you</td>
+            <td>@Html.TextBoxFor(x => x.parent.Relationship)</td>
+        </tr>
+        <tr>
+            <td>Occupation</td>
+            <td>@Html.TextBoxFor(x => x.parent.Occupation)</td>
+        </tr>
+        <tr>
+            <td>Employer Name</td>
+            <td>@Html.TextBoxFor(x => x.parent.EmployerName)</td>
+        </tr>
+        <tr>
+            <td>Employer phone number</td>
+            <td>@Html.TextBoxFor(x => x.parent.EmployerPhoneNumber)</td>
+        </tr>
+        <tr>
+            <td>Employer status</td>
+            <td>@Html.EnumTypeDropDownListFor(x => x.parent.EmploymentStatus)</td>
+        </tr>
+        <tr>
+            <td>Time with employer (years) </td>
+            <td>@Html.TextBoxFor(x => x.parent.YearWithEmployer)</td>
+        </tr>
+        <tr>
+            <td>Time with employer (month) </td>
+            <td>@Html.TextBoxFor(x => x.parent.MonthWithEmployer)</td>
+        </tr>
+        <tr>
+            <td>Annual employment incom (before tax)</td>
+            <td>@Html.TextBoxFor(x => x.parent.AnnualEmploymentIncome)</td>
+        </tr>
+        <tr>
+            <td>Payment period</td>
+            <td>@Html.EnumTypeDropDownListFor(x => x.parent.PaymentPeriod)</td>
+        </tr>
+        <tr>
+            <td>Other nnual business income (before tax)</td>
+            <td>@Html.TextBoxFor(x => x.parent.OtherAnnualBusinessIncome)</td>
+        </tr>
+        <tr>
+            <td>Annual benefits (before tax)</td>
+            <td>@Html.TextBoxFor(x => x.parent.AnnualBenefit)</td>
+        </tr>
+        <tr>
+            <td>Annual rental / investment income (before tax)</td>
+            <td>@Html.TextBoxFor(x => x.parent.AnnualRental_InvestmentIncome)</td>
+        </tr>
+        <tr>
+            <td>Number of dependents</td>
+            <td>@Html.TextBoxFor(x => x.parent.NumberOfDependents)</td>
+        </tr>
+        <tr>
+            <td>Martial status</td>
+            <td>@Html.EnumTypeDropDownListFor(x => x.parent.MartialStatus)</td>
+        </tr>
+        <tr>
+            <td>Rent costs (per month)</td>
+            <td>@Html.TextBoxFor(x => x.parent.RentCost)</td>
+        </tr>
+        <tr>
+            <td>Home loan costs (per month)</td>
+            <td>@Html.TextBoxFor(x => x.parent.HomeLoanCost)</td>
+        </tr>
+        <tr>
+            <td>Insurance costs (per month)</td>
+            <td>@Html.TextBoxFor(x => x.parent.InsuranceCost)</td>
+        </tr>
+        <tr>
+            <td>Personal / family costs (per month)</td>
+            <td>@Html.TextBoxFor(x => x.parent.Personal_FamilyCost)</td>
+        </tr>
+        <tr>
+            <td>Food and beverage costs (per month)</td>
+            <td>@Html.TextBoxFor(x => x.parent.FoodBeverageCost)</td>
+        </tr>
+        <tr>
+            <td>Transport costs (per month)</td>
+            <td>@Html.TextBoxFor(x => x.parent.TransportCost)</td>
+        </tr>
+        <tr>
+            <td>Total credit card limits (combined)</td>
+            <td>@Html.TextBoxFor(x => x.parent.TotalCreditCardLimit)</td>
+        </tr>
+        <tr>
+            <td>Total personal loan / overdraft limits (combined)</td>
+            <td>@Html.TextBoxFor(x => x.parent.TotalPersonalLoan_OverdraftLimit)</td>
+        </tr>
+        <tr>
+            <td>Personal loan repayments (per month)</td>
+            <td>@Html.TextBoxFor(x => x.parent.PersonalLoanRepayment)</td>
+        </tr>
+        <tr>
+            <td>Total value of assets</td>
+            <td>@Html.TextBoxFor(x => x.parent.TotalAssets)</td>
+        </tr>
+        <tr>
+            <td>Total value of liabilities</td>
+            <td>@Html.TextBoxFor(x => x.parent.TotalLiabilities)</td>
+        </tr>
+        <tr>
+            <td>Certificate</td>
+            <td><input type="file" name="file"/></td>
+        </tr>
+        <tr>
+            <td>Loan Amount</td>
+            <td>@Html.TextBoxFor(x => x.parent.LoanAmount)</td>
+        </tr>
+    </table>
+    <button type="submit">Submit</button>   
+}
+@using (Html.BeginForm("Register", "Parent", FormMethod.Post))
+{
+    <input type="hidden" name="sample" value="true" />
+    <button type="submit">Dummy Data</button>
+}
+
+

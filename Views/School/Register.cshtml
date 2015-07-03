@@ -1,0 +1,102 @@
+﻿@model Edstart.DTO.SchoolRegister
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Homelayout.cshtml";
+}
+
+<h2>School Register</h2>
+
+@using (Html.BeginForm("Register", "School", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+        <tr>
+            <td>Email</td>
+            <td>@Html.TextBoxFor(x => x.school.Account.Email)</td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>@Html.TextBoxFor(x => x.school.Account.Password)</td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td>@Html.EnumDropDownListFor(x=>x.school.Title)</td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td>@Html.TextBoxFor(x => x.school.FirstName)</td>
+        </tr>
+
+        <tr>
+            <td>Last Name</td>
+            <td>@Html.TextBoxFor(x => x.school.LastName)</td>
+        </tr>
+        <tr>
+            <td>Office Phone</td>
+            <td>@Html.TextBoxFor(x => x.school.OfficePhone)</td>
+        </tr>
+        <tr>
+            <td>Mobile Phone</td>
+            <td>@Html.TextBoxFor(x => x.school.MobilePhone)</td>
+        </tr>
+        <tr>
+            <td>School Name</td>
+            <td>@Html.TextBoxFor(x => x.school.SchoolName)</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>@Html.TextBoxFor(x => x.school.Address)</td>
+        </tr>
+        <tr>
+            <td>Current Student</td>
+            <td>@Html.TextBoxFor(x => x.school.CurrentStudent)</td>
+        </tr>
+        <tr>
+            <td>Lowest year level offered</td>
+            <td>@Html.EnumTypeDropDownListFor(x => x.school.LowestLevelOffred)</td>
+        </tr>
+        <tr>
+            <td>Highest year level offered</td>
+            <td>@Html.EnumTypeDropDownListFor(x => x.school.HighestLevelOffred)</td>
+        </tr>
+        <tr>
+            <td>Current annual fee for highest year-level (including compulsory activity contribution fees)</td>
+            <td>@Html.TextBoxFor(x => x.school.HighestAnnualFee)</td>
+        </tr>
+        <tr>
+            <td>Principal Title</td>
+            <td>@Html.EnumDropDownListFor(x => x.school.PrincipalTitle)</td>
+        </tr>
+        <tr>
+            <td>Principal First Name</td>
+            <td>@Html.TextBoxFor(x => x.school.PrincipalFirstName)</td>
+        </tr>
+        <tr>
+            <td>Principal Last Name</td>
+            <td>@Html.TextBoxFor(x => x.school.PrincipalLastName)</td>
+        </tr>
+        <tr>
+            <td>BSB Number</td>
+            <td>@Html.TextBoxFor(x => x.school.BSBNumber)</td>
+        </tr>
+        <tr>
+            <td>Account Number</td>
+            <td>@Html.TextBoxFor(x => x.school.AccountNumber)</td>
+        </tr>
+        <tr>
+            <td>Account Name</td>
+            <td>@Html.TextBoxFor(x => x.school.AccountName)</td>
+        </tr>
+        <tr>
+            <td>Certificate</td>
+            <td><input name="file" type="file" /></td>
+        </tr>
+    </table>
+    <button type="submit">Submit</button>
+}
+@using (Html.BeginForm("Register", "School", FormMethod.Post))
+{
+    <input type="hidden" name="sample" value="true" />
+    <button type="submit">Dummy Data</button>
+}
+
+

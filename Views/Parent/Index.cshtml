@@ -1,0 +1,278 @@
+﻿@using Edstart.Models
+@model Edstart.Models.Parent
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    table tr td:first-child::after{
+        content:" : ";
+        text-align:right;
+    }
+    *.account_status span.status.active {
+        opacity: 1;
+        border: solid 1px black;
+    }
+
+    *.account_status span.status {
+        padding: 4px 3px;
+        font-weight: bold;
+    }
+
+    *.account_status span.pending {
+        background-color: rgb(190,0,0);
+        color: white;
+        opacity: 0.3;
+    }
+
+    *.account_status span.approve {
+        background-color: rgb(0,0,190);
+        color: white;
+        opacity: 0.3;
+    }
+
+    *.account_status span.funding {
+        background-color: rgb(182, 255, 0);
+        opacity: 0.3;
+    }
+
+    *.account_status span.complete {
+        background-color: rgb(0,190,0);
+        opacity: 0.3;
+    }
+</style>
+<h2>Index Parent</h2>
+<table>
+    <tr>
+        <td>Title</td>
+        <td>@Model.Title.ToString()</td>
+    </tr>
+    <tr>
+        <td>First name</td>
+        <td>@Model.FirstName</td>
+    </tr>
+    <tr>
+        <td>Last name</td>
+        <td>@Model.LastName</td>
+    </tr>
+    <tr>
+        <td>Date of Birth</td>
+        <td>@Model.DateOfBirth</td>
+    </tr>
+    <tr>
+        <td>Licence Nnumber</td>
+        <td>@Model.LicenceNumber</td>
+    </tr>
+    <tr>
+        <td>Licence state</td>
+        <td>@Model.LicenceState.LicenceStateCode</td>
+    </tr>
+    <tr>
+        <td>Passport number</td>
+        <td>@Model.PassportNumber</td>
+    </tr>
+    <tr>
+        <td>Student first name</td>
+        <td>@Model.StudentFirstName</td>
+    </tr>
+    <tr>
+        <td>Stdent last name</td>
+        <td>@Model.StudentLastName</td>
+    </tr>
+    <tr>
+        <td>Gender</td>
+        <td>@Model.Gender</td>
+    </tr>
+    <tr>
+        <td>Student's date of birth</td>
+        <td>@Model.StudentDateOfBirth</td>
+    </tr>
+    <tr>
+        <td>School Name</td>
+        <td>@Model.School.SchoolName</td>
+    </tr>
+    <tr>
+        <td>First year of enrolment in non-government school</td>
+        <td>@Model.FirstYearInSchool</td>
+    </tr>
+    <tr>
+        <td>Previous School</td>
+        <td>@Model.PreviousSchool</td>
+    </tr>
+    <tr>
+        <td>Loan term</td>
+        <td>@Model.Term.KindTerm</td>
+    </tr>
+    <tr>
+        <td>Home phone</td>
+        <td>@Model.HomePhone</td>
+    </tr>
+    <tr>
+        <td>Mobile phone</td>
+        <td>@Model.MobilePhone</td>
+    </tr>
+    <tr>
+        <td>Address</td>
+        <td>@Model.Address</td>
+    </tr>
+    <tr>
+        <td>Type of Residence</td>
+        <td>@Model.Residence.ToString()</td>
+    </tr>
+    <tr>
+        <td>How long have you lived here (years)</td>
+        <td>@Model.YearLive</td>
+    </tr>
+    <tr>
+        <td>How long have you lived here (month)</td>
+        <td>@Model.MonthLive</td>
+    </tr>
+    <tr>
+        <td>Previous address</td>
+        <td>@Model.PreviousAddress</td>
+    </tr>
+    <tr>
+        <td>Next of kin name</td>
+        <td>@Model.KinName</td>
+    </tr>
+    <tr>
+        <td>Next of kin contact number</td>
+        <td>@Model.KinContactNumber</td>
+    </tr>
+    <tr>
+        <td>Relationship to you</td>
+        <td>@Model.Relationship</td>
+    </tr>
+    <tr>
+        <td>Occupation</td>
+        <td>@Model.Occupation</td>
+    </tr>
+    <tr>
+        <td>Employer Name</td>
+        <td>@Model.EmployerName</td>
+    </tr>
+    <tr>
+        <td>Employer phone number</td>
+        <td>@Model.EmployerPhoneNumber</td>
+    </tr>
+    <tr>
+        <td>Employer status</td>
+        <td>@Model.EmploymentStatus.ToString().Replace('_',' ')</td>
+    </tr>
+    <tr>
+        <td>Time with employer (years) </td>
+        <td>@Model.YearWithEmployer</td>
+    </tr>
+    <tr>
+        <td>Time with employer (month) </td>
+        <td>@Model.MonthWithEmployer</td>
+    </tr>
+    <tr>
+        <td>Annual employment incom (before tax)</td>
+        <td>@Model.AnnualEmploymentIncome</td>
+    </tr>
+    <tr>
+        <td>Payment period</td>
+        <td>@Model.PaymentPeriod</td>
+    </tr>
+    <tr>
+        <td>Other nnual business income (before tax)</td>
+        <td>@Model.OtherAnnualBusinessIncome</td>
+    </tr>
+    <tr>
+        <td>Annual benefits (before tax)</td>
+        <td>@Model.AnnualBenefit</td>
+    </tr>
+    <tr>
+        <td>Annual rental / investment income (before tax)</td>
+        <td>@Model.AnnualRental_InvestmentIncome</td>
+    </tr>
+    <tr>
+        <td>Number of dependents</td>
+        <td>@Model.NumberOfDependents</td>
+    </tr>
+    <tr>
+        <td>Martial status</td>
+        <td>@Model.MartialStatus</td>
+    </tr>
+    <tr>
+        <td>Rent costs (per month)</td>
+        <td>@Model.RentCost</td>
+    </tr>
+    <tr>
+        <td>Home loan costs (per month)</td>
+        <td>@Model.HomeLoanCost</td>
+    </tr>
+    <tr>
+        <td>Insurance costs (per month)</td>
+        <td>@Model.InsuranceCost</td>
+    </tr>
+    <tr>
+        <td>Personal / family costs (per month)</td>
+        <td>@Model.Personal_FamilyCost</td>
+    </tr>
+    <tr>
+        <td>Food and beverage costs (per month)</td>
+        <td>@Model.FoodBeverageCost</td>
+    </tr>
+    <tr>
+        <td>Transport costs (per month)</td>
+        <td>@Model.TransportCost</td>
+    </tr>
+    <tr>
+        <td>Total credit card limits (combined)</td>
+        <td>@Model.TotalCreditCardLimit</td>
+    </tr>
+    <tr>
+        <td>Total personal loan / overdraft limits (combined)</td>
+        <td>@Model.TotalPersonalLoan_OverdraftLimit</td>
+    </tr>
+    <tr>
+        <td>Personal loan repayments (per month)</td>
+        <td>@Model.PersonalLoanRepayment</td>
+    </tr>
+    <tr>
+        <td>Total value of assets</td>
+        <td>@Model.TotalAssets</td>
+    </tr>
+    <tr>
+        <td>Total value of liabilities</td>
+        <td>@Model.TotalLiabilities</td>
+    </tr>
+    <tr>
+        <td>Loan Amount</td>
+        <td>@Model.LoanAmount</td>
+    </tr>
+    <tr>
+        <td>Rate</td>
+        <td>@Model.Rate %</td>
+    </tr>
+    <tr>
+        <td>Loan have to pay</td>
+        <td>@Model.LoanWithRate</td>
+    </tr>
+    <tr>
+        <td>Certificate File</td>
+        <td>
+            @if (!String.IsNullOrEmpty(Model.Certificate))
+            {
+                <a href="@Model.Certificate" target="_blank">File</a>
+            }
+            else
+            {
+                <text>Empty</text>
+            }
+
+        </td>
+    </tr>
+    <tr>
+        <td>Status</td>
+        <td class="account_status">
+            <span class="status pending @(Model.Status == eBorroweStatus.Pending ? Html.Raw("active") : Html.Raw("")) ">Pending</span>
+            <span class="status approve @(Model.Status == eBorroweStatus.Approve ? Html.Raw("active") : Html.Raw(""))">Approve</span>
+            <span class="status funding @(Model.Status == eBorroweStatus.Funding ? Html.Raw("active") : Html.Raw(""))">Funding</span>
+            <span class="status complete @(Model.Status == eBorroweStatus.Complete ? Html.Raw("active") : Html.Raw(""))">Complete</span>
+        </td>
+    </tr>
+</table>
+
+

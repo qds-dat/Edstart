@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edstart | Coming soon</title>
+
+    <link rel="alternate" type="application/rss+xml" title="Edstart » Feed" href="http://www.edstart.com.au/feed/">
+    <link rel="alternate" type="application/rss+xml" title="Edstart » Comments Feed" href="http://www.edstart.com.au/comments/feed/">
+    <link rel="stylesheet" id="wpclef-main-css" href="/Content/asset/main.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="onesie-style-css" href="/Content/asset/style.css" type="text/css" media="all">
+    <link rel="stylesheet" id="onesie-bootstrap-style-css" href="/Content/asset/bootstrap.css" type="text/css" media="all">
+    <link rel="stylesheet" id="onesie-magnific-popup-style-css" href="/Content/asset/magnific-popup.css" type="text/css" media="all">
+    <link rel="stylesheet" id="genericons-css" href="/Content/asset/genericons.css" type="text/css" media="all">
+    <link rel="stylesheet" id="onesie-alt-style-css" href="/Content/asset/dark.css" type="text/css" media="all">
+    <link rel="stylesheet" id="gpp-custom-fonts-css" href="/Content/asset/css" type="text/css" media="all">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=News+Cycle' rel='stylesheet' type='text/css'>
+    <!-- BeginHeader -->
+    <style type="text/css">
+        h1, h2, h3, h4, h5, h6, ul.menu li a {
+            font-family: 'News Cycle';
+        }
+
+            body, p, textarea, input, h2.site-description {
+                font-family: 'News Cycle';
+            }
+    </style><!-- EndHeader -->
+    <style type="text/css" id="custom-background-css">
+        body.custom-background {
+            background-color: #fff;
+            background-image: url('/Content/asset/Edstart-plant.jpg');
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-attachment: scroll;
+            background-size: 100% auto;
+        }
+
+        div.response#mce-error-response {
+            color: red;
+        }
+    </style>
+    <!-- BeginHeader -->
+    <style type="text/css">
+        body {
+            color: #235ba8;
+        }
+    </style><!-- EndHeader -->
+</head>
+
+<body class="home page page-id-4 page-template page-template-page-templates page-template-page-template-contact page-template-page-templatespage-template-contact-php custom-background">
+    <div id="page" class="hfeed site">
+        <div class="navbar-collapse collapse" style="background-color:black">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                <li>@Html.ActionLink("School Register", "Register", "School")</li>
+                <li>@Html.ActionLink("Parent Register", "Register", "Parent")</li>
+                <li>@Html.ActionLink("Investor Register", "Register", "Investor")</li>
+            </ul>
+        </div>
+        <div style="padding:20px">
+            @RenderBody()
+        </div>
+        <footer id="colophon" class="site-footer" role="contentinfo">
+            <div class="site-info">
+                <!-- <a id="up" class="genericon genericon-collapse" href="http://www.edstart.com.au/#page" title="Back to top"></a> -->
+            </div><!-- .site-info -->
+        </footer><!-- #colophon -->
+    </div><!-- #page -->
+    @*<script>
+
+            $(document).ready(function () {
+                var DummyData = {
+                    Email: ["Email1@gmail.com", "Email2@gmail.com", "Email3@gmail.com", "Email4@gmail.com", "Email5@gmail.com", "Email6@gmail.com"],
+                    School:["","","","","","",""],
+                    Name: ["John", "Max", "Jane", "Tarah", "Corker", "Judie", "Judy", "Billy", "Tom", "Tommy", "Joan", "Monica"],
+                    Address: ["7185 Dewy Mews", "5961 Shady Wynd", "8707 Golden Goose Mall", "2858 Wishing Timber Point", "396 Umber Common", "7643 Old Nectar Promenade", "7668 Broad Glen"],
+                    Phone: ["(902) 420-3955", "(506) 967-7829", "(867) 810-6004", "(506) 583-3829", "(867) 407-7264", "867) 053-1909", "(306) 095-5172", "(709) 770-9844", "(867) 525-1871"],
+                    Date: ["1989-08-27", "1971-02-04", "1982-05-06", "1984-04-05", "1980-12-05", "1979-11-23", "1990-9-33", "1988-01-01", "1991-07-03"],
+                    Infor: ["abc", "my information ...."],
+                    Loan: ["10000", "20000", "5000", "3000", "1000", "2500", "5000", "6000", "8000"],
+                }
+
+                DummyData.GetData = function (kind) {
+
+                    var ArrData = DummyData[kind] || [];
+                    var index = Math.floor(Math.random() * ArrData.length);
+                    index = index > ArrData.length ? ArrData.length : index;
+                    if (ArrData.length == 0)
+                        return "";
+                    else
+                        return ArrData[index];
+                }
+
+                $("button#dummy").click(function () {
+                    var formParent = $(this).closest("form");
+                    var dummyItem = formParent.find("input.dummyItem");
+
+                    dummyItem.each(function () {
+                        if ($(this).is('[id*="Password"]'))
+                            $(this).val("123456");
+                        else if ($(this).is('[id*="Email"]'))
+                            $(this).val(DummyData.GetData("Email"));
+                        else if ($(this).is('[id*="Name"]')) {
+                            if ($(this).is('[id*="School"]'))
+                                $(this).val(DummyData.GetData("School"));
+                            else
+                                $(this).val(DummyData.GetData("Name"));
+                        }
+                        else if ($(this).is('[id*="Address"]'))
+                            $(this).val(DummyData.GetData("Address"));
+                        else if ($(this).is('[id*="Phone"]'))
+                            $(this).val(DummyData.GetData("Phone"));
+                        else if ($(this).is('[id*="Date"]'))
+                            $(this).val(DummyData.GetData("Date"));
+                        else if ($(this).is('[id*="Infor"]'))
+                            $(this).val(DummyData.GetData("Infor"));
+                        else if ($(this).is('[id*="Loan"]'))
+                            $(this).val(DummyData.GetData("Loan"));
+
+                    });
+                });
+            });
+
+        </script>*@
+
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>						

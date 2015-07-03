@@ -1,0 +1,31 @@
+﻿@model IEnumerable<object>
+@{
+    ViewBag.Title = "Investments";
+}
+<style>
+    table tr td, table tr th {
+        padding: 7px;
+    }
+</style>
+<h2>Investments</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Loan Amount</th>
+        <th>Bid</th>
+        <th>Rate</th>
+        <th>Percent Funding</th>
+        <th>Status</th>
+    </tr>
+    @foreach (var investment in Model)
+    {
+        <tr>
+            <td>@investment.GetType().GetProperty("Name").GetValue(investment)</td>
+            <td>@investment.GetType().GetProperty("LoanAmount").GetValue(investment)</td>
+            <td>@investment.GetType().GetProperty("Bid").GetValue(investment)</td>
+            <td>@investment.GetType().GetProperty("Rate").GetValue(investment)</td>
+            <td>@decimal.Parse(investment.GetType().GetProperty("PercentFunding").GetValue(investment).ToString()).ToString("F")</td>
+            <td>@investment.GetType().GetProperty("Status").GetValue(investment)</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,70 @@
+﻿@using Edstart.Models
+@model Edstart.Models.School
+@{
+    ViewBag.Title = "Dashboard";
+}
+<style>
+    table tr td, table tr th {
+        padding: 7px;
+    }
+
+    *.account_status span.status.active {
+        opacity: 1;
+        border: solid 1px black;
+    }
+
+    *.account_status span.status {
+        position:relative;
+        padding: 2px 3px;
+        font-weight: bold;
+    }
+
+    *.account_status span.pending {
+        background-color: rgb(190,0,0);
+        color: white;
+        opacity: 0.3;
+    }
+
+    *.account_status span.approve {
+        background-color: rgb(0,0,190);
+        color: white;
+        opacity: 0.3;
+    }
+
+    *.account_status span.funding {
+        background-color: rgb(182, 255, 0);
+        opacity: 0.3;
+    }
+
+    *.account_status span.complete {
+        background-color: rgb(0,190,0);
+        opacity: 0.3;
+    }
+</style>
+<h2>Dashboard</h2>
+<table>
+    <tr>
+        <th>Parent name</th>
+        <th>Student name</th>
+        <th>Home phone</th>
+        <th>Mobile phone</th>
+        <th>Occupation</th>
+        <th>Funding status</th>
+    </tr>
+    @foreach (var parent in Model.Parents)
+    {
+        <tr>
+            <td>@( "("+parent.Title.ToString() + ") "+ parent.FirstName + " " + parent.LastName )</td>
+            <td>@(parent.StudentFirstName +" " + parent.StudentLastName)</td>
+            <td>@parent.HomePhone</td>
+            <td>@parent.MobilePhone</td>
+            <td>@parent.Occupation</td>
+            <td class="account_status">
+                <span class="status pending @(parent.Status == eBorroweStatus.Pending ? Html.Raw("active") : Html.Raw("")) ">Pending</span>
+                <span class="status approve @(parent.Status == eBorroweStatus.Approve ? Html.Raw("active") : Html.Raw(""))">Approve</span>
+                <span class="status funding @(parent.Status == eBorroweStatus.Funding ? Html.Raw("active") : Html.Raw(""))">Funding</span>
+                <span class="status complete @(parent.Status == eBorroweStatus.Complete ? Html.Raw("active") : Html.Raw(""))">Complete</span>
+            </td>
+        </tr>
+    }
+</table>

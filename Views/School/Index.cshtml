@@ -1,0 +1,94 @@
+﻿@model Edstart.Models.School
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index School</h2>
+<table>
+    <tr>
+        <td>Title</td>
+        <td>@Model.Title</td>
+    </tr>
+    <tr>
+        <td>First Name</td>
+        <td>@Model.FirstName</td>
+    </tr>
+
+    <tr>
+        <td>Last Name</td>
+        <td>@Model.LastName</td>
+    </tr>
+    <tr>
+        <td>Office Phone</td>
+        <td>@Model.OfficePhone</td>
+    </tr>
+    <tr>
+        <td>Mobile Phone</td>
+        <td>@Model.MobilePhone</td>
+    </tr>
+    <tr>
+        <td>School Name</td>
+        <td>@Model.SchoolName</td>
+    </tr>
+    <tr>
+        <td>Address</td>
+        <td>@Model.Address</td>
+    </tr>
+    <tr>
+        <td>Current Student</td>
+        <td>@Model.CurrentStudent</td>
+    </tr>
+    <tr>
+        <td>Lowest year level offered</td>
+        <td>@Model.LowestLevelOffred.ToString().Replace('_',' ')</td>
+    </tr>
+    <tr>
+        <td>Highest year level offered</td>
+        <td>@Model.HighestLevelOffred.ToString().Replace('_', ' ')</td>
+    </tr>
+    <tr>
+        <td>Current annual fee for highest year-level (including compulsory activity contribution fees</td>
+        <td>@Model.HighestAnnualFee</td>
+    </tr>
+    <tr>
+        <td>Principal Title</td>
+        <td>@Model.PrincipalTitle</td>
+    </tr>
+    <tr>
+        <td>Principal First Name</td>
+        <td>@Model.PrincipalFirstName</td>
+    </tr>
+    <tr>
+        <td>Principal Last Name</td>
+        <td>@Model.PrincipalLastName</td>
+    </tr>
+    <tr>
+        <td>BSB Number</td>
+        <td>@Model.BSBNumber</td>
+    </tr>
+    <tr>
+        <td>Account Number</td>
+        <td>@Model.AccountNumber</td>
+    </tr>
+    <tr>
+        <td>Account Name</td>
+        <td>@Model.AccountName</td>
+    </tr>
+    <tr>
+        <td>Certificate File</td>
+        <td>
+            @if (!String.IsNullOrEmpty(Model.Certificate))
+            {
+                <a href="@Model.Certificate" target="_blank">File</a>
+            }
+            else
+            {
+                <text>Empty</text>
+            }
+        
+        </td>
+    </tr>
+
+</table>
+
+ 

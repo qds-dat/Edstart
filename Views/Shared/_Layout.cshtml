@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            </div>
+            <div class="navbar-collapse collapse">
+                @if (User.IsInRole("Investor"))
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Investor")</li>
+                        <li>@Html.ActionLink("Auction", "Index", "Auction")</li>
+                        <li>@Html.ActionLink("Dashboard", "Dashboard", "Investor")</li>
+                        <li>@Html.ActionLink("Fee", "Fee", "Investor")</li>
+                    </ul>
+                }
+                else if (User.IsInRole("Parent"))
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Parent")</li>
+                        <li>@Html.ActionLink("Auction", "Index", "Auction")</li>
+                        <li>@Html.ActionLink("Dashboard", "Dashboard", "Parent")</li>>
+                    </ul>
+                }
+                else if (User.IsInRole("School"))
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "School")</li>
+                        <li>@Html.ActionLink("Dashboard", "Dashboard", "School")</li>
+                    </ul>
+                }     
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div style="background-color:rgba(190,0,0,0.7);font-weight:bold;font-size:13px">@ViewBag.Message</div>
+        @RenderBody()
+        <hr />
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
