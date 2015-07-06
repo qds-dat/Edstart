@@ -71,13 +71,14 @@ namespace Edstart.Services
 
                 var parent = (Parent)result.RetVal;
 
-                if (parent.Status != eBorroweStatus.Pending)
-                    res.Fail("Your email has been approve");
+                if (parent.Status != eBorroweStatus.AwaitingApplication)
+                    //&& parent.Status != eBorroweStatus.Applied)
+                    res.Fail("Your email has been applied");
 
                 if (parent.EmailCode != model.Code)
                     res.Fail("Your email code invalid");
 
-                parent.Status = eBorroweStatus.Approve;
+                parent.Status = eBorroweStatus.Applied;
                 parent.FundingDate = DateTime.Now;
                 db.Entry<Parent>(parent).State = EntityState.Modified;
                 db.SaveChanges();
@@ -89,7 +90,22 @@ namespace Edstart.Services
                 return res.Fail(ex.Message);
             }
         }
+        public Parent GetParentDashboard(int id,ParentDashboardFilter filter)
+        {
+            try
+            {
+                var parentInfor = db.Parents.Where(x => x.ID == id).FirstOrDefault();
 
+
+
+                return parentInfor;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
         
     }
 }

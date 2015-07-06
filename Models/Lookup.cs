@@ -15,10 +15,12 @@ namespace Edstart.Models
     }
     public enum eBorroweStatus
     {
-        Pending,
-        Approve,
-        Funding,
-        Complete
+        AwaitingApplication,
+        Applied,
+        Approved,
+        Funded,
+        Fulfilled,
+        Overdue
     }
 
     public enum eGender

@@ -82,16 +82,17 @@ namespace Edstart.Controllers
             return View(investor);
         }
 
-        public ActionResult Dashboard()
+        public ViewResult Dashboard()
         {
-            var result = schoolService.GetSchoolInformationBySchoolId(SessionFactory.SchoolId);
-            if (!result.State)
-            {
-                return RedirectToAction("Login", "Home");
-            }
-            School investor = (School)result.RetVal; // await db.Schools.FindAsync();
+            return View();
+        }
 
-            return View(investor);
+        [HttpPost]
+        public ViewResult Dashboard(SchoolDashboardFilter filter)
+        {
+            var result = schoolService.GetSchoolDashboard(SessionFactory.SchoolId, filter);
+            List<Parent> listParent = (List<Parent>)result.RetVal;
+            return View("Partials/Dashboard", listParent);
         }
     }
 }

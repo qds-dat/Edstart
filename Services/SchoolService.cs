@@ -61,6 +61,39 @@ namespace Edstart.Services
             }
         }
 
+        public Result GetSchoolDashboard(int SchoolId,SchoolDashboardFilter filter)
+        {
+            Result res = new Result();
+            try
+            {
+                var parents = db.Schools.FirstOrDefault(x => x.ID == SchoolId).Parents.ToList();
+
+                if (parents == null)
+                    return res.Fail("Cannot get school information");
+
+                if(filter.ParentName != null){
+                    parents = parents.Where(x => (x.FirstName + " " + x.LastName).Contains(filter.ParentName)).ToList();
+                }
+                if (filter.StudentName != null)
+                {
+                    parents = parents.Where(x => (x.StudentFirstName + " " + x.StudentLastName).Contains(filter.StudentName)).ToList();
+                }
+                if (filter.Term > 0)
+                {
+                    parents = parents.Where(x => x.TermId == filter.Term).ToList();
+                }
+                if (filter.LoanStatus != null)
+                {
+                    parents = parents.Where(x => x.Status == filter.LoanStatus).ToList();
+                }              
+                return res.Success(parents);
+            }
+            catch (Exception ex)
+            {
+                return res.Fail(ex.Message);
+            }
+        }
+
         public Result GetParentBySchoolId(int SchoolId)
         {
             Result res = new Result();

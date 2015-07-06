@@ -1,3 +1,5 @@
+D:\VisualStudio\Edstart\Edstart\Edstart\obj\Debug\Edstart.Migrations.test.resources
+D:\VisualStudio\Edstart\Edstart\Edstart\obj\Debug\Edstart.csproj.GenerateResource.Cache
 D:\VisualStudio\Edstart\Edstart\Edstart\bin\Edstart.dll.config
 D:\VisualStudio\Edstart\Edstart\Edstart\bin\Edstart.dll
 D:\VisualStudio\Edstart\Edstart\Edstart\bin\Edstart.pdb
@@ -52,5 +54,4 @@ D:\VisualStudio\Edstart\Edstart\Edstart\bin\Microsoft.Owin.Security.Twitter.xml
 D:\VisualStudio\Edstart\Edstart\Edstart\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\VisualStudio\Edstart\Edstart\Edstart\obj\Debug\Edstart.dll
 D:\VisualStudio\Edstart\Edstart\Edstart\obj\Debug\Edstart.pdb
-D:\VisualStudio\Edstart\Edstart\Edstart\obj\Debug\Edstart.Migrations.test.resources
-D:\VisualStudio\Edstart\Edstart\Edstart\obj\Debug\Edstart.csproj.GenerateResource.Cache
+D:\VisualStudio\Edstart\Edstart\Edstart\obj\Debug\Edstart.csprojResolveAssemblyReference.cache

@@ -49,7 +49,7 @@ namespace Edstart.Models
 
                     Parent parent = (Parent)resultParent.RetVal;
                     // check loan complete
-                    if (parent.Status == eBorroweStatus.Complete)
+                    if (parent.Status == eBorroweStatus.Funded || parent.Status == eBorroweStatus.Fulfilled)
                         return res.Fail("This investment complete");
 
                     // get investor in investments for parent
@@ -93,19 +93,14 @@ namespace Edstart.Models
                     /*Update borrower status*/
                     if (this.BidAmount == amountLeft)
                     {                       
-                        parent.Status = eBorroweStatus.Complete;
+                        parent.Status = eBorroweStatus.Fulfilled; // funded
                         parent.Investments.ToList().ForEach(a => a.Status = eInvestmentStatus.Success);
 
                         var listEmail = db.Investments.Where(x=>x.ParentId == parent.ID).Select(b => b.Investor.Account.Email).ToList();
 
                         es.Notification_InvesmentSuccess(parent.Account.Email, listEmail);
                     }
-                    else
-                    {
-                        parent.Status = eBorroweStatus.Funding;
-                    }
-
-                    //db.Entry<Parent>(parent).State = EntityState.Modified;
+                    
                     db.SaveChanges();
                     transaction.Commit();
                     return res.Success(this);

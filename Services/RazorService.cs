@@ -18,7 +18,7 @@ namespace Edstart.Services
         {
             db = context;
         }
-        public List<SelectListItem> GetSchool_SelectListItem()
+        public List<SelectListItem> GetSchool_SelectListItem(bool isNull = false)
         {
             var SLI = db.Schools.ToArray()
                         .Select(x =>
@@ -27,7 +27,10 @@ namespace Edstart.Services
                                     Value = x.ID.ToString(),
                                     Text = x.SchoolName
                                 }).ToList();
-
+            if (isNull)
+            {
+                SLI.Insert(0, new SelectListItem() { Text = "Select One" });
+            }
             return SLI;
         }
         private void LoanTermSampleData() {
@@ -42,7 +45,7 @@ namespace Edstart.Services
             }
             db.SaveChanges();
         }
-        public List<SelectListItem> GetTerm_SelectListItem()
+        public List<SelectListItem> GetTerm_SelectListItem(bool isNull = false)
         {
             if(db.Terms.ToList().Count == 0){
                 LoanTermSampleData();
@@ -54,6 +57,28 @@ namespace Edstart.Services
                                     Value = x.ID.ToString(),
                                     Text = x.KindTerm
                                 }).ToList();
+
+            if(isNull){
+                SLI.Insert(0, new SelectListItem() { Text = "Select One" });
+            }
+
+            return SLI;
+        }
+
+        public List<SelectListItem> GetEnum_SelectListItem<T>(bool isNull = false)
+        {
+            var values = Enum.GetValues(typeof(T)).Cast<object>();
+
+            List<SelectListItem> SLI = values.Select(value => new SelectListItem
+            {
+                Text = value.ToString().Replace('_', ' '),
+                Value = ((int)value).ToString(),
+            }).ToList();
+
+            if (isNull)
+            {
+                SLI.Insert(0, new SelectListItem() { Text = "Select One" });
+            }
 
             return SLI;
         }

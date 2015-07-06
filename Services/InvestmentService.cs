@@ -24,7 +24,7 @@ namespace Edstart.Services
         {
             var ListParent = db.Parents
                 .Where(x =>
-                    x.Status != eBorroweStatus.Pending
+                    x.Status != eBorroweStatus.AwaitingApplication
                     && DateTime.Now < DbFunctions.AddDays(x.FundingDate, 60)
                    ).ToList();
             var RetVal = ListParent.Select(b => new LoanAuction(b, InvestorId)).ToList();
@@ -37,7 +37,7 @@ namespace Edstart.Services
             var parent = db.Parents
                 .Where(x =>
                     x.ID == ParentId
-                    && x.Status != eBorroweStatus.Pending
+                    && (x.Status != eBorroweStatus.AwaitingApplication && x.Status != eBorroweStatus.Applied)
                     && DateTime.Now < DbFunctions.AddDays(x.FundingDate, 60)
                    ).FirstOrDefault();
             if (parent == null)
@@ -70,7 +70,7 @@ namespace Edstart.Services
                           from investment in db.Investments
                           where investment.ParentId == parent.ID
                           && investment.InvestorId == InvestorId
-                          && parent.Status == eBorroweStatus.Complete
+                          && parent.Status == eBorroweStatus.Fulfilled
                           select new
                           {
                               Name = parent.FirstName + " " + parent.LastName,
@@ -92,7 +92,9 @@ namespace Edstart.Services
         {
             try
             {
-                var investment = db.Investments.Where(x => x.ParentId == ParentId && x.Parent.Status == eBorroweStatus.Complete).ToList();
+                var investment = db.Investments
+                    .Where(x => x.ParentId == ParentId 
+                        && (x.Parent.Status == eBorroweStatus.Funded || x.Parent.Status == eBorroweStatus.Fulfilled)).ToList();
                 return investment;
             }
             catch

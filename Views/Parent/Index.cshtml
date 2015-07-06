@@ -267,10 +267,11 @@
     <tr>
         <td>Status</td>
         <td class="account_status">
-            <span class="status pending @(Model.Status == eBorroweStatus.Pending ? Html.Raw("active") : Html.Raw("")) ">Pending</span>
+            @Model.Status.ToString();
+            @*<span class="status pending @(Model.Status == eBorroweStatus.Pending ? Html.Raw("active") : Html.Raw("")) ">Pending</span>
             <span class="status approve @(Model.Status == eBorroweStatus.Approve ? Html.Raw("active") : Html.Raw(""))">Approve</span>
             <span class="status funding @(Model.Status == eBorroweStatus.Funding ? Html.Raw("active") : Html.Raw(""))">Funding</span>
-            <span class="status complete @(Model.Status == eBorroweStatus.Complete ? Html.Raw("active") : Html.Raw(""))">Complete</span>
+            <span class="status complete @(Model.Status == eBorroweStatus.Complete ? Html.Raw("active") : Html.Raw(""))">Complete</span>*@
         </td>
     </tr>
 </table>

@@ -1,44 +1,122 @@
-﻿@model IEnumerable<Edstart.Models.Investment>
+﻿@using Edstart.Services
+@using Edstart.Models
+@model Edstart.Models.School
 @{
-    ViewBag.Title = "Dashboard";
+    RazorService rs = new RazorService();
+    ViewBag.Title = "School Dashboard";
+    var list_status = rs.GetEnum_SelectListItem<eBorroweStatus>(true);
 }
 <style>
     table tr td, table tr th {
         padding: 7px;
     }
+
+    *.account_status span.status.active {
+        opacity: 1;
+        border: solid 1px black;
+    }
+
+    *.account_status span.status {
+        position: relative;
+        padding: 2px 3px;
+        font-weight: bold;
+    }
+
+    *.account_status span.pending {
+        background-color: rgb(190,0,0);
+        color: white;
+        opacity: 0.3;
+    }
+
+    *.account_status span.approve {
+        background-color: rgb(0,0,190);
+        color: white;
+        opacity: 0.3;
+    }
+
+    *.account_status span.funding {
+        background-color: rgb(182, 255, 0);
+        opacity: 0.3;
+    }
+
+    *.account_status span.complete {
+        background-color: rgb(0,190,0);
+        opacity: 0.3;
+    }
 </style>
 <h2>Dashboard</h2>
-<table>
-    <tr>
-        <th>Investor Name</th>
-        <th>Bid Amount</th>
-        <th>Bid Rate</th>
-        <th>Amount have to pay</th>
-        <th>Account Name</th>
-        <th>Account Number</th>
-    </tr>
-    @if (Model.Any())
-    {
-        foreach (var investment in Model)
-        {
-            <tr>
-                <td>@(investment.Investor.FirstName + " " + investment.Investor.LastName)</td>
-                <td>@(investment.BidAmount)</td>
-                <td>@investment.BidRate</td>
-                <td>@(investment.BidAmount + (investment.BidAmount * investment.BidRate / 100))</td>
-                <td>@(investment.Investor.AccountName)</td>
-                <td>@(investment.Investor.AccountNumber)</td>
-            </tr>
-        }
-    }
-    else
-    {
+@using (Html.BeginForm("Dashboard", "Parent", FormMethod.Post, new { id = "ParentDashboardFilter" }))
+{
+    <table>
         <tr>
-            <td colspan="4">Your loan still incomplete</td>
-            
+            <td>Parent name</td>
+            <td>@Html.TextBox("ParentName", "")</td>
         </tr>
-    }
-    
-</table>
+        <tr>
+            <td>Student name</td>
+            <td>@Html.TextBox("StudentName", "")</td>
+        </tr>
+        <tr>
+            <td>Loan Status</td>
+            <td>@Html.DropDownList("LoanStatus", list_status)</td>
+        </tr>
+    </table>
+    <button id="Find">Find</button>
+}
+<div id="list_parent">
+    <table>
+        <tr>
+            <th>Schools name</th>
+            <th>Student name</th>
+            <th>Year of loan</th>
+            <th>Original loan amount</th>
+            <th>Current loan balance</th>
+            <th>Credit rating</th>
+            <th>Interest rate</th>
+            <th>Loan status</th>
+        </tr>
+        <tr>
+            <td colspan="5">Loading</td>
+        </tr>
+    </table>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var request;
+            $("#ParentDashboardFilter").submit(function (event) {
+                if (request) {
+                    request.abort();
+                }
+
+                var serializedData = $(this).serialize();
+
+                request = $.ajax({
+                    url: "/Parent/Dashboard",
+                    type: "POST",
+                    data: serializedData
+                });
+
+                request.done(function (response, textStatus, jqXHR) {
+                    // Log a message to the console
+                    $("#list_parent").html(response);
+                });
+
+                request.fail(function (jqXHR, textStatus, errorThrown) {
+                    // Log the error to the console
+                    console.log(
+                        "The following error occurred: " +
+                        textStatus, errorThrown
+                    );
+                });
 
 
+                event.preventDefault();
+            });
+
+            $("#Find").click();
+
+
+        })
+    </script>
+}

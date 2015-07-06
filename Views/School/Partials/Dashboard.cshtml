@@ -1,0 +1,27 @@
+﻿@using Edstart.Models
+@model List<Edstart.Models.Parent>
+@{
+    Layout="";
+}
+<table>
+    <tr>
+        <th>Parent name</th>
+        <th>Student name</th>
+        <th>Year of loan</th>
+        <th>Original loan amount</th>
+        <th>Loan status</th>
+    </tr>
+    @foreach (var parent in Model)
+    {
+        <tr>
+            <td>@( "(" + parent.Title.ToString() + ") " + parent.FirstName + " " + parent.LastName)</td>
+            <td>@(parent.StudentFirstName + " " + parent.StudentLastName)</td>
+            <td>@parent.Term.KindTerm</td>
+            <td>@parent.LoanAmount</td>
+            <td class="account_status">
+                @parent.Status.ToString()
+            </td>
+        </tr>
+    }
+
+</table>

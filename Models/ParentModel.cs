@@ -15,7 +15,7 @@ namespace Edstart.Models
         // constructor
         public Parent() {
             EmailCode = Guid.NewGuid();
-            Status = eBorroweStatus.Pending;
+            Status = eBorroweStatus.AwaitingApplication;
             CreateDate = DateTime.Now;
             Rate = (decimal)Config.Rate;
             FundingDate = DateTime.Now;

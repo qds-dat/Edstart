@@ -1,7 +1,11 @@
-﻿@using Edstart.Models
+﻿@using Edstart.Services
+@using Edstart.Models
 @model Edstart.Models.School
 @{
-    ViewBag.Title = "Dashboard";
+    RazorService rs = new RazorService();
+    ViewBag.Title = "School Dashboard";
+    var list_term = rs.GetTerm_SelectListItem(true);
+    var list_status = rs.GetEnum_SelectListItem<eBorroweStatus>(true);
 }
 <style>
     table tr td, table tr th {
@@ -14,7 +18,7 @@
     }
 
     *.account_status span.status {
-        position:relative;
+        position: relative;
         padding: 2px 3px;
         font-weight: bold;
     }
@@ -42,29 +46,79 @@
     }
 </style>
 <h2>Dashboard</h2>
-<table>
-    <tr>
-        <th>Parent name</th>
-        <th>Student name</th>
-        <th>Home phone</th>
-        <th>Mobile phone</th>
-        <th>Occupation</th>
-        <th>Funding status</th>
-    </tr>
-    @foreach (var parent in Model.Parents)
-    {
+@using (Html.BeginForm("Dashboard", "School", FormMethod.Post, new { id = "SchoolDashboardFilter" }))
+{
+    <table>
         <tr>
-            <td>@( "("+parent.Title.ToString() + ") "+ parent.FirstName + " " + parent.LastName )</td>
-            <td>@(parent.StudentFirstName +" " + parent.StudentLastName)</td>
-            <td>@parent.HomePhone</td>
-            <td>@parent.MobilePhone</td>
-            <td>@parent.Occupation</td>
-            <td class="account_status">
-                <span class="status pending @(parent.Status == eBorroweStatus.Pending ? Html.Raw("active") : Html.Raw("")) ">Pending</span>
-                <span class="status approve @(parent.Status == eBorroweStatus.Approve ? Html.Raw("active") : Html.Raw(""))">Approve</span>
-                <span class="status funding @(parent.Status == eBorroweStatus.Funding ? Html.Raw("active") : Html.Raw(""))">Funding</span>
-                <span class="status complete @(parent.Status == eBorroweStatus.Complete ? Html.Raw("active") : Html.Raw(""))">Complete</span>
-            </td>
+            <td>Parent name</td>
+            <td>@Html.TextBox("ParentName", "")</td>
         </tr>
-    }
-</table>
+        <tr>
+            <td>Student name</td>
+            <td>@Html.TextBox("StudentName", "")</td>
+        </tr>
+        <tr>
+            <td>Year</td>
+            <td>@Html.DropDownList("Term", list_term)</td>
+        </tr>
+        <tr>
+            <td>Loan Status</td>
+            <td>@Html.DropDownList("LoanStatus", list_status)</td>
+        </tr>
+    </table>
+    <button id="Find">Find</button>
+}
+<div id="list_parent">
+    <table>
+        <tr>
+            <th>Parent name</th>
+            <th>Student name</th>
+            <th>Year of loan</th>
+            <th>Original loan amount</th>
+            <th>Loan status</th>
+        </tr>
+        <tr>
+            <td colspan="5">Loading</td>
+        </tr>
+    </table>
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var request;
+            $("#SchoolDashboardFilter").submit(function (event) {
+                if (request) {
+                    request.abort();
+                }
+
+                var serializedData = $(this).serialize();
+
+                request = $.ajax({
+                    url: "/School/Dashboard",
+                    type: "POST",
+                    data: serializedData
+                });
+
+                request.done(function (response, textStatus, jqXHR) {
+                    // Log a message to the console
+                    $("#list_parent").html(response);
+                });
+
+                request.fail(function (jqXHR, textStatus, errorThrown) {
+                    // Log the error to the console
+                    console.log(
+                        "The following error occurred: " +
+                        textStatus, errorThrown
+                    );
+                });
+
+
+                event.preventDefault();
+            });
+
+            $("#Find").click();
+
+
+        })
+    </script>
+}

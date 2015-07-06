@@ -172,10 +172,12 @@
     <Compile Include="Custom\CMembershipProvider.cs" />
     <Compile Include="Custom\CRoleProvider.cs" />
     <Compile Include="DTO\InvestmentPersonal.cs" />
+    <Compile Include="DTO\ParentDashboardFilter.cs" />
     <Compile Include="DTO\ParentRegister.cs" />
     <Compile Include="DTO\EmailApprove.cs" />
     <Compile Include="DTO\InvestorRegister.cs" />
     <Compile Include="DTO\LoanAuction.cs" />
+    <Compile Include="DTO\SchoolDashboardFilter.cs" />
     <Compile Include="DTO\SchoolRegister.cs" />
     <Compile Include="Framework\Helper.cs" />
     <Compile Include="Framework\SessionFactory.cs" />
@@ -198,7 +200,6 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InvestorModel.cs" />
     <Compile Include="Models\Lookup.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\SchoolModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -303,6 +304,8 @@
     <Content Include="Views\Investor\Fee.cshtml" />
     <Content Include="Views\Parent\Dashboard.cshtml" />
     <Content Include="Views\School\Dashboard.cshtml" />
+    <Content Include="Views\School\Partials\Dashboard.cshtml" />
+    <Content Include="Views\Parent\Partials\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

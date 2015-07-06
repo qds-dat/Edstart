@@ -1,0 +1,28 @@
+﻿@model Edstart.Models.Parent
+
+<table>
+    <tr class="header">
+        <th>Schools name</th>
+        <th>Student name</th>
+        <th>Year of loan</th>
+        <th>Original loan amount</th>
+        <th>Current loan balance</th>
+        <th>Credit rating</th>
+        <th>Interest rate</th>
+        <th>Loan status</th>
+        <th>Detail</th>
+    </tr>
+    <tr>
+        <td>@Model.School.SchoolName</td>
+        <td>@(Model.StudentFirstName + " " + Model.StudentFirstName)</td>
+        <td>@Model.Term.KindTerm</td>
+        <td>@Model.LoanAmount</td>
+        <td>@(Model.LoanWithRate - Model.Investments.Sum(x => x.BidAmount))</td>
+        <td>Credit rating</td>
+        <td>@Model.Rate</td>
+        <td>@Model.Status</td>
+        <td><button>Detail</button></td>
+    </tr>
+</table>
+
+

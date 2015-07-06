@@ -101,9 +101,15 @@ namespace Edstart.Controllers
         // GET: Borrowers
         public ActionResult Dashboard()
         {
-            return View(investmentService.GetInvestorByParentId(SessionFactory.ParentId));
+            return View();
         }
 
+        // GET: Borrowers
+        [HttpPost]
+        public ViewResult Dashboard(ParentDashboardFilter filter)
+        {
+            return View("Partials/Dashboard",parentService.GetParentDashboard(SessionFactory.ParentId,filter));
+        }
         
         protected override void Dispose(bool disposing)
         {
